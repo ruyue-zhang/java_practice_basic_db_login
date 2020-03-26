@@ -4,18 +4,27 @@ import com.thoughtworks.entities.User;
 import com.thoughtworks.repositories.UserRepository;
 import com.thoughtworks.repositories.UserRepositoryI;
 
-import java.util.UUID;
-
 public class UserService implements UserServiceI {
     private UserRepositoryI userRepository = new UserRepository();
+
     @Override
-    public void userRegister(User user) {
-        if(isNameRight(user.getName()) && isPhoneNumberRight(user.getPhoneNumber())
-                && isEmailRight(user.getEmail()) && isPasswordRight(user.getPassword()) ) {
-            userRepository.userRegister(user);
-        } else {
-            System.out.println("格式错误\n请按正确格式输入注册信息：");
+    public String userRegister(User user) {
+        if (isNameRight(user.getName()) && isPhoneNumberRight(user.getPhoneNumber())
+                && isEmailRight(user.getEmail()) && isPasswordRight(user.getPassword())) {
+            System.out.println();
+            if (userRepository.userRegister(user)) {
+                return new String(user.getName() + ",恭喜你注册成功！");
+            }
+        } else if (!isNameRight(user.getName())) {
+            return new String("用户名不合法\n请输入合法的注册信息：");
+        } else if (!isPhoneNumberRight(user.getPhoneNumber())) {
+            return new String("手机号不合法\n请输入合法的注册信息：");
+        } else if(!isEmailRight(user.getEmail())) {
+            return new String("邮箱不合法\n请输入合法的注册信息：");
+        } else if(!isPasswordRight(user.getPassword())) {
+            return new String("密码不合法\n请输入合法的注册信息：");
         }
+        return new String("注册失败\n请输入合法的注册信息：");
     }
 
     public boolean isNameRight(String name) {

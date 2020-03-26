@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserRepository implements UserRepositoryI{
     @Override
-    public void userRegister(User user) {
+    public Boolean userRegister(User user) {
         Connection conn = DbUtil.getConnection();
         String sql = "INSERT INTO user_info (id,name,phone_number,email,password,error_number,status) values(?,?,?,?,?,?,?)";
         try {
@@ -24,7 +24,9 @@ public class UserRepository implements UserRepositoryI{
             ptmt.execute();
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override
