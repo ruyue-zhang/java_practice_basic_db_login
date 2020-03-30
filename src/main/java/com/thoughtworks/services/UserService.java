@@ -54,7 +54,7 @@ public class UserService implements UserServiceI {
                         }
                     } else {
                         System.out.println(account.getName() + "，欢迎回来！\n您的手机号是" + account.getPhoneNumber() + "，邮箱是" + account.getEmail());
-                        return false;
+                        return true;
                     }
                 }
             }

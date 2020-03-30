@@ -2,10 +2,6 @@ package com.thoughtworks;
 
 import com.thoughtworks.controllers.UserController;
 import com.thoughtworks.entities.User;
-import com.thoughtworks.repositories.UserRepository;
-import com.thoughtworks.repositories.UserRepositoryI;
-import com.thoughtworks.services.UserService;
-import com.thoughtworks.services.UserServiceI;
 
 import java.util.Scanner;
 
