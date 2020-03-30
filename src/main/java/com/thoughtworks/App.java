@@ -22,17 +22,23 @@ public class App {
       System.out.println("请输入你的选择(1~3):");
       Scanner input = new Scanner(System.in);
       int index = input.nextInt();
+      String userInput;
+      String[] userArray;
+      User user;
       switch (index) {
         case 1:
           System.out.println("请输入注册信息(格式：用户名,手机号,邮箱,密码)：");
-          String userInfo = input.next();
-          String[] split = userInfo.split(",");
-          User user = new User(split[0], split[1], split[2], split[3]);
+          userInput = input.next();
+          userArray = userInput.split(",");
+          user = new User(userArray[0], userArray[1], userArray[2], userArray[3]);
           System.out.println(userController.userRegister(user));
           break;
         case 2:
-          System.out.println("登录");
-          loginResult = false;
+          System.out.println("请输入用户名和密码(格式：用户名,密码)：");
+          userInput = input.next();
+          userArray = userInput.split(",");
+          user = new User(userArray[0], null,null,userArray[1]);
+          loginResult = !userController.userLogin(user.getName(),user.getPassword());
           break;
         case 3:
           break;

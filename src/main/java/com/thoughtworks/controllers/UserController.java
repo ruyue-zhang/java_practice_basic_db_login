@@ -9,5 +9,7 @@ public class UserController {
     public String userRegister(User user) {
         return userService.userRegister(user);
     }
-
+    public boolean userLogin(String name, String password) {
+        return userService.userLogin(name, password);
+    }
 }
